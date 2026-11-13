@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أحمد & نسمه</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+body{background:#240a16;color:#fff;text-align:center}
+.wrap{max-width:460px;margin:auto;padding:16px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.progress{height:5px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden;margin-bottom:12px}
+.progress div{height:100%;background:#ff8aa0;width:20%}
+.page{display:none}
+.page.active{display:block}
+.envelope-new{width:320px;height:200px;margin:14px auto 6px;position:relative;cursor:pointer}
+.env-body{position:absolute;inset:0;background:#f07a97;border-radius:16px;overflow:hidden}
+.env-body:before{content:'';position:absolute;left:0;right:0;top:0;height:100px;background:#ff9eb5;clip-path:polygon(0 0,100% 0,50% 100%)}
+.letterTop{width:260px;background:#fff;color:#7a2b3f;border-radius:10px;padding:14px;position:absolute;left:50%;top:14px;transform:translate(-50%,-150%);transition:.6s;z-index:1;font-weight:700;font-size:14px}
+.letterTop.show{transform:translate(-50%,-5px)}
+.seal-new{width:60px;height:60px;background:#fff;border-radius:50%;position:absolute;top:54%;left:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;font-size:26px;z-index:3}
+h1{font-size:32px;margin:8px 0}
+.sub{opacity:.85;font-size:13px}
+.tagline{font-size:12px;background:rgba(255,255,255,.12);display:inline-block;padding:6px 14px;border-radius:99px;margin:8px 0}
+.btn{background:#e86a8a;color:#fff;border:none;padding:12px 22px;border-radius:99px;margin:8px 4px;cursor:pointer;font-size:14px;font-weight:700}
+.btn-ghost{background:rgba(255,255,255,.15)}
+.card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:18px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.box{background:rgba(0,0,0,.28);border-radius:12px;padding:14px 4px}
+.box b{font-size:22px;display:block}
+.box span{font-size:12px;opacity:.75}
+.music{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.35);border-radius:99px;padding:10px 14px;text-align:right}
+.music button{width:44px;height:44px;border-radius:50%;border:none;background:#e86a8a;color:#fff;font-size:16px}
+.flip{cursor:pointer}
+.flip-inner{position:relative;width:100%;height:76px;transform-style:preserve-3d;transition:.4s}
+.flip.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:8px;font-size:13px;backface-visibility:hidden}
+.flip-front{background:rgba(0,0,0,.3);font-size:22px}
+.flip-back{background:#e86a8a;transform:rotateY(180deg);color:#fff}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.photos div{background:#2a1220;border-radius:14px;overflow:hidden;padding-bottom:8px}
+.photos img{width:100%;height:130px;object-fit:cover;display:block;background:#111}
+.photos p{font-size:12px;margin-top:6px}
+.final{border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:22px;line-height:2;background:rgba(255,255,255,.06)}
+.dots{margin:10px 0;font-size:12px;opacity:.7;letter-spacing:4px}
+.nav{display:flex;justify-content:space-between;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="progress"><div id="bar"></div></div>
+
+<div class="page active" id="p1">
+  <div class="envelope-new" onclick="openEnvelope()">
+    <div class="env-body"></div>
+    <div class="letterTop" id="letterTop">أحمد & نسمه<br><small>OUR ETERNAL LOVE STORY ❤️</small></div>
+    <div class="seal-new">💖</div>
+  </div>
+  <h1>أحمد & نسمه</h1>
+  <div class="tagline">💕 من 30/3/2026 - 12:33 وللأبد 💕</div>
+  <p class="sub">اضغطي على الظرف لفتح الحكاية</p>
+  <button class="btn" onclick="openEnvelope()">💌 افتحي الظرف</button>
+  <div class="dots">● ○ ○ ○ ○</div>
+</div>
+
+<div class="page" id="p2">
+  <div class="card">
+    <div>🤍 <b>حكايتنا</b></div>
+    <p style="margin:10px 0;line-height:1.8">كل لحظة معاكي هي عمر جديد<br>منذ أن بدأت القصة</p>
+    <div class="grid">
+      <div class="box"><b id="y">0</b><span>سنة</span></div>
+      <div class="box"><b id="mo">0</b><span>شهر</span></div>
+      <div class="box"><b id="d">0</b><span>يوم</span></div>
+      <div class="box"><b id="h">0</b><span>ساعة</span></div>
+      <div class="box"><b id="mi">0</b><span>دقيقة</span></div>
+      <div class="box"><b id="s">0</b><span>ثانية</span></div>
+    </div>
+  </div>
+  <div class="card" style="padding:14px">
+    <div style="display:flex;justify-content:space-between;font-size:13px"><span>🎵 موسيقى الحكاية - song.mp3</span></div>
+    <div class="music" style="margin-top:12px">
+      <button onclick="toggleMusic(event)">▶</button>
+      <div style="flex:1"><b>أغنيتنا</b><br><small style="opacity:.7">أحمد & نسمه</small></div>
+      <audio id="audio" loop><source src="song.mp3"></audio>
+    </div>
+  </div>
+  <div class="nav"><button class="btn btn-ghost" onclick="go(1)">← رجوع</button><button class="btn" onclick="go(3)">التالي →</button></div>
+  <div class="dots">○ ● ○ ○ ○</div>
+</div>
+
+<div class="page" id="p3">
+  <div class="card">
+    <div>— وعود من القلب —</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">
+      <div class="box">🛡️<br><small>حأكون سندك في كل وقت</small></div>
+      <div class="box">❤️<br><small>حبك أمانة في قلبي وحياتي</small></div>
+      <div class="box">♾️<br><small>حبنا ما بنتهي، وعد</small></div>
+    </div>
+  </div>
+  <div class="card">
+    <div>— رسائل صغيرة —</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">
+      <div class="flip" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">✉️</div><div class="flip-back">إنتي أجمل إنسانة في حياتي ❤️</div></div></div>
+      <div class="flip" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">⭐</div><div class="flip-back">بوجودك الدنيا منورة ✨</div></div></div>
+      <div class="flip" onclick="this.classList.toggle('flipped')"><div class="flip-inner"><div class="flip-front">👑</div><div class="flip-back">ملكة قلبي للأبد 👑</div></div></div>
+    </div>
+    <p style="font-size:12px;margin-top:10px;opacity:.7">اضغطي على أي رسالة لتفتحيها</p>
+  </div>
+  <div class="nav"><button class="btn btn-ghost" onclick="go(2)">← رجوع</button><button class="btn" onclick="go(4)">التالي →</button></div>
+  <div class="dots">○ ○ ● ○ ○</div>
+</div>
+
+<div class="page" id="p4">
+  <div class="card">
+    <div><b>صور من الحكاية</b></div>
+    <p style="font-size:12px;opacity:.75;margin:8px 0 12px">مزتي الماف زيها ❤️</p>
+    <div class="photos">
+      <div><img id="p1img" src="nno1.jpg"><p>❤️ انتي حبيبة عمري</p></div>
+      <div><img id="p2img" src="nno2.jpg"><p>✨ ضحكتك حياتي</p></div>
+      <div><img id="p3img" src="nno3.jpg"><p>بعيد وقلبي معاك 🌙</p></div>
+      <div><img id="p4img" src="nno4.jpg"><p>عايش أتأمل فيكي</p></div>
+    </div>
+  </div>
+  <div class="nav"><button class="btn btn-ghost" onclick="go(3)">← رجوع</button><button class="btn" onclick="go(5)">التالي →</button></div>
+  <div class="dots">○ ○ ○ ● ○</div>
+</div>
+
+<div class="page" id="p5">
+  <div class="final">
+    <div style="font-size:36px">❤️</div>
+    <h2>❤️ ملكة قلبي .. ننو</h2>
+    <p style="font-size:16px">ننو ي ننو صح م جاتك هدية يوم 11/11 لاكين نحن نكون برانا الناس في يوم ونحن يومنا براهو دي كانت حاجه بسيطه ليك اتذكريني بيها بحبككك ي مزه ❤️<br><br><b style="font-size:19px">ننوشتي العشل</b></p>
+    <button class="btn" onclick="go(1)">🔄 افتحي الجواب من الأول</button>
+  </div>
+  <button class="btn btn-ghost" onclick="go(4)">← رجوع</button>
+  <p style="font-size:12px;opacity:.5;margin:10px">اتعمل بحب لـ أحمد & نسمه</p>
+  <div class="dots">○ ○ ○ ○ ●</div>
+</div>
+
+</div>
+<script>
+function tryExt(id, base){
+  let exts=['jpg','jpeg','png','webp','JPG','JPEG','PNG'];
+  let img=document.getElementById(id);
+  let i=0;
+  img.onerror=function(){
+    i++;
+    if(i<exts.length){ img.src=base+'.'+exts[i]; }
+    else{ img.style.background='#333'; }
+  };
+}
+tryExt('p1img','nno1'); tryExt('p2img','nno2'); tryExt('p3img','nno3'); tryExt('p4img','nno4');
+function go(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('p'+n).classList.add('active');document.getElementById('bar').style.width=(n*20)+'%';window.scrollTo(0,0)}
+function openEnvelope(){document.getElementById('letterTop').classList.add('show');setTimeout(()=>go(2),600)}
+let start=new Date('2026-03-30T12:33:00');
+function tick(){let now=new Date();let diff=now-start;let sec=Math.floor(diff/1000);let y=Math.floor(sec/(365*24*3600));let mo=Math.floor((sec%(365*24*3600))/(30*24*3600));let d=Math.floor((sec%(30*24*3600))/(24*3600));let h=Math.floor((sec%86400)/3600);let mi=Math.floor((sec%3600)/60);let s=sec%60;document.getElementById('y').innerText=y;document.getElementById('mo').innerText=mo;document.getElementById('d').innerText=d;document.getElementById('h').innerText=h;document.getElementById('mi').innerText=mi;document.getElementById('s').innerText=s}
+setInterval(tick,1000);tick();
+let playing=false;function toggleMusic(e){e.stopPropagation();let a=document.getElementById('audio');playing? a.pause():a.play();playing=!playing;e.target.innerText=playing?'⏸':'▶'}
+</script>
+</body>
+</html>
